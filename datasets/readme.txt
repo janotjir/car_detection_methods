@@ -33,5 +33,3 @@ tst_data_wheels
 -----------------------------------------------------------------------------
 
 - for example of use look in one of evaluate.py files
-
-If there are any issues, contact: janotjir@fel.cvut.cz
