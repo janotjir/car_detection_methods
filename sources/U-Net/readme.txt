@@ -44,5 +44,3 @@ Example - generate testing dataset:
 Example - run the training that led to the best model:
 	python3 train.py --bs 32
 
------------------------------------------------------------------------------
-If there are any issues, contact me: janotjir@fel.cvut.cz
