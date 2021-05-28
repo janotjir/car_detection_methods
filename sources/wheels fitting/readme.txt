@@ -7,5 +7,3 @@ Example - evaluate wheels localization ability of wheels fitting method:
 
 - to visualize wheels localization, uncomment lines 209-221 in evaluate.py
 
------------------------------------------------------------------------------
-If there are any issues, contact me: janotjir@fel.cvut.cz
