@@ -22,5 +22,3 @@ run the training script
 Example - run the training that led to the best model:
 	python3 train.py
 
------------------------------------------------------------------------------
-If there are any issues, contact me: janotjir@fel.cvut.cz
