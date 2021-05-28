@@ -54,8 +54,8 @@ Example - generate testing dataset:
 	     --gpu (int)
 
 Example - run the training that led to the best model:
-	python3 train_segmentation.py --bs 128 --lr 0.0001 --feature_transform --normalize statice
+	python3 train_segmentation.py --bs 128 --lr 0.0001 --feature_transform --normalize static
 
 -----------------------------------------------------------------------------
 NOTE: the training was realized with Pytorch 1.5.0
-If there are any issues, contact me: janotjir@fel.cvut.cz
+If there are any issues, contact: janotjir@fel.cvut.cz
