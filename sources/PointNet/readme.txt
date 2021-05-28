@@ -58,4 +58,3 @@ Example - run the training that led to the best model:
 
 -----------------------------------------------------------------------------
 NOTE: the training was realized with Pytorch 1.5.0
-If there are any issues, contact: janotjir@fel.cvut.cz
