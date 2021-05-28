@@ -16,7 +16,7 @@ parser.add_argument('--optim', default='adam', help="optimizer for backprop")
 parser.add_argument('--momentum', type=float, default=0.9, help="momentum for optimizer")
 parser.add_argument('--weight_decay', type=float, default=0, help="weight_decay for optimizer")
 parser.add_argument('--weight', type=float, default=1, help="weight of loss for noise label")
-parser.add_argument('--gpu', type=int, default=-1, help="specify gpu")
+parser.add_argument('--gpu', type=int, default=0, help="specify gpu")
 opt = parser.parse_args()
 
 
@@ -39,13 +39,6 @@ def get_device(gpu=0):  # Manually specify gpu
     return device
 
 
-def get_free_gpu():
-    os.system('nvidia-smi -q -d Memory |grep -A4 GPU|grep Free >tmp')
-    memory_available = [int(x.split()[2]) for x in open('tmp', 'r').readlines()]
-    index = np.argmax(memory_available)
-    return int(index)  # Returns index of the gpu with the most memory available
-
-
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, data_file, label_file):
         super().__init__()
@@ -65,10 +58,7 @@ class Dataset(torch.utils.data.Dataset):
 
 
 if __name__ == '__main__':
-    if opt.gpu != -1:
-        device = get_device(opt.gpu)
-    else:
-        device = get_device(get_free_gpu())
+    device = get_device(opt.gpu)
 
     try:
         os.makedirs(opt.outf)

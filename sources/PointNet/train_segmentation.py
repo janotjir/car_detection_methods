@@ -17,12 +17,6 @@ def get_device(gpu=0):  # Manually specify gpu
     return device
 
 
-def get_free_gpu():
-    os.system('nvidia-smi -q -d Memory |grep -A4 GPU|grep Free >tmp')
-    memory_available = [int(x.split()[2]) for x in open('tmp', 'r').readlines()]
-    index = np.argmax(memory_available[:-1])  # Skip the 7th card --- it is reserved for evaluation!!!
-    return int(index)  # Returns index of the gpu with the most memory available
-
 def accuracy(prediction, labels_batch, dim=-1):
     #shapes: NX2, N
     pred_index = prediction.argmax(dim)
@@ -42,7 +36,7 @@ parser.add_argument('--weight_decay', type=float, default=0, help="weight_decay 
 parser.add_argument('--weight', type=float, default=1, help="weight of loss for noise label")
 parser.add_argument('--numc', type=int, default=2, help="number of classes")
 parser.add_argument('--normalize', type=str, default='noscale', help="choose normalization")
-parser.add_argument('--gpu', type=int, default=-1, help="specify gpu")
+parser.add_argument('--gpu', type=int, default=0, help="specify gpu")
 opt = parser.parse_args()
 
 if opt.normalize == 'static':
@@ -63,10 +57,7 @@ val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=opt.bs, shuffle
 
 num_classes = opt.numc
 
-if opt.gpu != -1:
-    device = get_device(opt.gpu)
-else:
-    device = get_device(get_free_gpu())
+device = get_device(opt.gpu)
 
 try:
     os.makedirs(opt.outf)
